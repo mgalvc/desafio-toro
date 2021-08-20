@@ -8,7 +8,7 @@ export class AuthController {
     private actions: AuthActions
   ) {}
 
-  @Post()
+  @Post('login')
   async login(@Body() user: LoginUserDto) {
     return this.actions.login(user);
   }
