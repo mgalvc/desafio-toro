@@ -10,8 +10,8 @@ export class AuthRepository {
     @InjectModel(User.name) private model: Model<UserDocument>
   ) {}
   
-  async findByEmailAndPassword(email: string, password: string) {
-    const user = await this.model.findOne({ email, password }, 'email name');
+  async findByCpfAndPassword(cpf: string, password: string) {
+    const user = await this.model.findOne({ cpf, password }, 'cpf name');
 
     if(!user) {
       throw new UserNotFoundError();

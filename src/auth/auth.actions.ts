@@ -11,8 +11,8 @@ export class AuthActions {
   ) {}
 
   async login(loginUser: LoginUserDto) {
-    const { email, password } = loginUser;
-    const user = await this.repository.findByEmailAndPassword(email, password);
+    const { cpf, password } = loginUser;
+    const user = await this.repository.findByCpfAndPassword(cpf, password);
     return {
       access_token: this.jwtService.sign(user)
     }
