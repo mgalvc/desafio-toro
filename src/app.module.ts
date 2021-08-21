@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
       'mongodb://root:root@localhost:27017/toro?authSource=admin',
       {
         useCreateIndex: true,
+        useFindAndModify: false,
       },
     ),
     AuthModule,
