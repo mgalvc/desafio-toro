@@ -7,14 +7,14 @@ import { LoginUserDto } from './dto/login-user.dto';
 export class AuthActions {
   constructor(
     private repository: AuthRepository,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   async login(loginUser: LoginUserDto) {
     const { cpf, password } = loginUser;
     const user = await this.repository.findByCpfAndPassword(cpf, password);
     return {
-      access_token: this.jwtService.sign(user)
-    }
+      access_token: this.jwtService.sign(user),
+    };
   }
 }

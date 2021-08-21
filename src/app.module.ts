@@ -6,10 +6,13 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     UsersModule,
-    MongooseModule.forRoot('mongodb://root:root@localhost:27017/toro?authSource=admin', {
-      useCreateIndex: true
-    }),
-    AuthModule
+    MongooseModule.forRoot(
+      'mongodb://root:root@localhost:27017/toro?authSource=admin',
+      {
+        useCreateIndex: true,
+      },
+    ),
+    AuthModule,
   ],
   controllers: [],
   providers: [],

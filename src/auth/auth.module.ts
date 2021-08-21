@@ -14,9 +14,8 @@ import { jwtSecret } from './auth.constants';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     JwtModule.register({
       secret: jwtSecret,
-      signOptions: { expiresIn: '60s' }
-    })
-  ]
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
 })
-
 export class AuthModule {}

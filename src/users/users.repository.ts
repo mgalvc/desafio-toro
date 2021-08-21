@@ -9,16 +9,14 @@ import { User, UserDocument } from './schemas/users.schema';
 
 @Injectable()
 export class UsersRepository {
-  constructor(
-    @InjectModel(User.name) private model: Model<UserDocument>
-  ) {}
+  constructor(@InjectModel(User.name) private model: Model<UserDocument>) {}
 
   async create(user: CreateUserDto) {
     try {
       const { _id } = await this.model.create(user);
       return _id;
     } catch (error) {
-      if(error.code == 11000) {
+      if (error.code == 11000) {
         throw new DuplicatedCpfError();
       }
       throw error;
@@ -28,7 +26,7 @@ export class UsersRepository {
   async get(id: number): Promise<User> {
     const user = await this.model.findById(id, 'name cpf');
 
-    if(!user) {
+    if (!user) {
       throw new UserNotFoundError();
     }
 
@@ -38,7 +36,7 @@ export class UsersRepository {
   async update(id: number, user: UpdateUserDto) {
     const updated = await this.model.findByIdAndUpdate(id, user);
 
-    if(!updated) {
+    if (!updated) {
       throw new UserNotFoundError();
     }
   }

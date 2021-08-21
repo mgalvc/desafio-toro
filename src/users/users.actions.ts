@@ -5,9 +5,7 @@ import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersActions {
-  constructor(
-    private repository: UsersRepository
-  ) {}
+  constructor(private repository: UsersRepository) {}
 
   async create(user: CreateUserDto) {
     const id = await this.repository.create(user);
