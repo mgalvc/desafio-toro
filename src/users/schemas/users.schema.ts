@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-class Wallet {
+export class Wallet {
   checkingAccountAmount: number;
   positions: Position[];
 }
 
-class Position {
+export class Position {
   symbol: string;
   amount: number;
   currentPrice: number;

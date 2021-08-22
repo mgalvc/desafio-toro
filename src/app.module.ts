@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { StocksModule } from './stocks/stocks.module';
+import { UserWalletModule } from './user-wallet/user-wallet.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { StocksModule } from './stocks/stocks.module';
     ),
     AuthModule,
     StocksModule,
+    UserWalletModule,
   ],
   controllers: [],
   providers: [],
