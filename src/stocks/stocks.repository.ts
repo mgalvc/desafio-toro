@@ -4,9 +4,9 @@ import { stocks } from './stocks.constants';
 @Injectable()
 export class StocksRepository {
   async getMostTraded(limit: number) {
-    const mostTraded = stocks
+    const mostTraded = stocks()
       .sort((stockA, stockB) => stockB.amount - stockA.amount)
-      .splice(0, limit)
+      .slice(0, limit)
     
     return mostTraded.map(({ symbol, currentPrice }) => ({ symbol, currentPrice }));
   }
