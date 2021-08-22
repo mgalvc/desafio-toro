@@ -13,7 +13,11 @@ export class UsersRepository {
 
   async create(user: CreateUserDto) {
     try {
-      const { _id } = await this.model.create(user);
+      const { _id } = await this.model.create({
+        ...user,
+        wallet: { checkingAccountAmount: 0, positions: [] }
+      });
+
       return _id;
     } catch (error) {
       if (error.code == 11000) {

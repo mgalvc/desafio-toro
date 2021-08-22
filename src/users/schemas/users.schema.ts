@@ -1,6 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+class Wallet {
+  checkingAccountAmount: number;
+  positions: Position[];
+}
+
+class Position {
+  symbol: string;
+  amount: number;
+  currentPrice: number;
+}
+
 @Schema()
 export class User {
   @Prop()
@@ -11,6 +22,9 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop()
+  wallet: Wallet;
 }
 
 export type UserDocument = User & Document;
