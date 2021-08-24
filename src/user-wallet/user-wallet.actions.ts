@@ -18,6 +18,7 @@ export class UserWalletActions {
 
     return {
       ...wallet,
+      positionsAmount,
       consolidated
     };
   }
