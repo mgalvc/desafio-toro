@@ -12,7 +12,7 @@ export class UsersActions {
     return { id };
   }
 
-  async get(id: number) {
+  async get(id: string) {
     return this.repository.get(id);
   }
 

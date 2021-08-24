@@ -35,8 +35,8 @@ export class UsersController {
   @ApiResponse(getOkResponse)
   @ApiResponse(getNotFoundResponse)
   async get(@Req() req: Request): Promise<any> {
-    const { cpf } = req.user as any;
-    return this.actions.get(cpf);
+    const { _id } = req.user as any;
+    return this.actions.get(_id);
   }
 
   @Post()

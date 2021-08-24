@@ -27,7 +27,7 @@ export class UsersRepository {
     }
   }
 
-  async get(id: number): Promise<User> {
+  async get(id: string): Promise<User> {
     const user = await this.model.findById(id, 'name cpf');
 
     if (!user) {
