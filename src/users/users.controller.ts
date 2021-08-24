@@ -21,17 +21,15 @@ import {
   putOkResponse,
   putNotFoundResponse,
 } from './openapi/responses';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Public } from 'src/auth/auth-public.decorator';
 import { Request } from 'express';
 
-@ApiTags('users')
-@Controller('users')
+@ApiTags('user')
+@Controller('user')
 export class UsersController {
   constructor(private actions: UsersActions) {}
 
   @Get()
-  @UseGuards(AuthGuard)
   @ApiResponse(getOkResponse)
   @ApiResponse(getNotFoundResponse)
   async get(@Req() req: Request): Promise<any> {

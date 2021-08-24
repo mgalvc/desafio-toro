@@ -1,14 +1,16 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { UserWalletActions } from './user-wallet.actions';
 
-@Controller('users')
+@Controller('user-wallet')
 export class UserWalletController {
   constructor(
     private actions: UserWalletActions
   ) {}
 
-  @Get('/:id/wallet')
-  async getUserWallet(@Param('id') userId: string) {
-    return this.actions.getWallet(userId);
+  @Get()
+  async getUserWallet(@Req() req: Request) {
+    const { _id } = req.user as any;
+    return this.actions.getWallet(_id);
   }
 }

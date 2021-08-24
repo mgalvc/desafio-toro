@@ -7,7 +7,7 @@ import { jwtSecret } from "src/auth/auth.constants";
   imports: [
     JwtModule.register({
       secret: jwtSecret,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '10s' },
     })
   ],
   exports: [JwtModule]
