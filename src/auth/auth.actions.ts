@@ -14,6 +14,7 @@ export class AuthActions {
     const { cpf, password } = loginUser;
     const user = await this.repository.findByCpfAndPassword(cpf, password);
     return {
+      name: user.name,
       access_token: this.jwtService.sign(user),
     };
   }

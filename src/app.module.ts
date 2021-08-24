@@ -4,6 +4,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { StocksModule } from './stocks/stocks.module';
 import { UserWalletModule } from './user-wallet/user-wallet.module';
+import { JwtGlobalModule } from './jwt/jwt.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UserWalletModule } from './user-wallet/user-wallet.module';
     AuthModule,
     StocksModule,
     UserWalletModule,
+    JwtGlobalModule
   ],
   controllers: [],
   providers: [],

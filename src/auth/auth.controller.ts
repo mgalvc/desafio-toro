@@ -6,6 +6,7 @@ import {
   postCreatedResponse,
   postBadRequestResponse,
 } from './openapi/responses';
+import { Public } from './auth-public.decorator';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -13,6 +14,7 @@ export class AuthController {
   constructor(private actions: AuthActions) {}
 
   @Post('login')
+  @Public()
   @ApiResponse(postCreatedResponse)
   @ApiResponse(postBadRequestResponse)
   async login(@Body() user: LoginUserDto) {

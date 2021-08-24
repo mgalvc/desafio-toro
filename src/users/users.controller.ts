@@ -6,6 +6,8 @@ import {
   Param,
   Post,
   Put,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -19,20 +21,26 @@ import {
   putOkResponse,
   putNotFoundResponse,
 } from './openapi/responses';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { Public } from 'src/auth/auth-public.decorator';
+import { Request } from 'express';
 
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private actions: UsersActions) {}
 
-  @Get('/:id')
+  @Get()
+  @UseGuards(AuthGuard)
   @ApiResponse(getOkResponse)
   @ApiResponse(getNotFoundResponse)
-  async get(@Param('id') id: number): Promise<any> {
-    return this.actions.get(id);
+  async get(@Req() req: Request): Promise<any> {
+    const { cpf } = req.user as any;
+    return this.actions.get(cpf);
   }
 
   @Post()
+  @Public()
   @HttpCode(201)
   @ApiResponse(postCreatedResponse)
   @ApiResponse(postBadRequestResponse)
