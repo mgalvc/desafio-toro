@@ -4,6 +4,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { StocksModule } from './stocks/stocks.module';
 import { UserWalletModule } from './user-wallet/user-wallet.module';
+import { SpbIntegrationsModule } from './spb-integrations/spb-integrations.module';
 import { JwtGlobalModule } from './jwt/jwt.module';
 
 @Module({
@@ -19,6 +20,7 @@ import { JwtGlobalModule } from './jwt/jwt.module';
     AuthModule,
     StocksModule,
     UserWalletModule,
+    SpbIntegrationsModule,
     JwtGlobalModule
   ],
   controllers: [],
