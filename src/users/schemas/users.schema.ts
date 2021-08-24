@@ -20,6 +20,9 @@ export class User {
   @Prop({ unique: true })
   cpf: string;
 
+  @Prop({ unique: true })
+  account: string;
+
   @Prop()
   password: string;
 

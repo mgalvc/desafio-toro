@@ -6,6 +6,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import DuplicatedCpfError from './errors/duplicated-cpf.error';
 import UserNotFoundError from './errors/user-not-found.error';
 import { User, UserDocument } from './schemas/users.schema';
+import { generateAccount } from './users.utils';
 
 @Injectable()
 export class UsersRepository {
@@ -15,6 +16,7 @@ export class UsersRepository {
     try {
       const { _id } = await this.model.create({
         ...user,
+        account: generateAccount(),
         wallet: { checkingAccountAmount: 0, positions: [] }
       });
 
@@ -28,7 +30,7 @@ export class UsersRepository {
   }
 
   async get(id: string): Promise<User> {
-    const user = await this.model.findById(id, 'name cpf');
+    const user = await this.model.findById(id, 'name cpf account');
 
     if (!user) {
       throw new UserNotFoundError();
