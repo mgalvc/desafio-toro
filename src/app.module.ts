@@ -6,17 +6,20 @@ import { StocksModule } from './stocks/stocks.module';
 import { UserWalletModule } from './user-wallet/user-wallet.module';
 import { SpbIntegrationsModule } from './spb-integrations/spb-integrations.module';
 import { JwtGlobalModule } from './jwt/jwt.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    UsersModule,
-    MongooseModule.forRoot(
-      'mongodb://root:root@localhost:27017/toro?authSource=admin',
-      {
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configs: ConfigService) => ({
+        uri: configs.get('MONGO_URI'),
         useCreateIndex: true,
-        useFindAndModify: false,
-      },
-    ),
+        useFindAndModify: false
+      })
+    }),
+    UsersModule,
     AuthModule,
     StocksModule,
     UserWalletModule,
