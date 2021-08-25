@@ -45,14 +45,4 @@ export class UsersController {
   async create(@Body() user: CreateUserDto): Promise<any> {
     return this.actions.create(user);
   }
-
-  @Put('/:id')
-  @ApiResponse(putOkResponse)
-  @ApiResponse(putNotFoundResponse)
-  async update(
-    @Param('id') id: number,
-    @Body() user: UpdateUserDto,
-  ): Promise<any> {
-    return this.actions.update(id, user);
-  }
 }
