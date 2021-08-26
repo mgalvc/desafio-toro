@@ -7,5 +7,4 @@ import { StocksRepository } from './stocks.repository';
   providers: [StocksActions, StocksController, StocksRepository],
   controllers: [StocksController],
 })
-
 export class StocksModule {}

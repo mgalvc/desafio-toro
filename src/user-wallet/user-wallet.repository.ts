@@ -7,14 +7,14 @@ import UserNotFoundError from './errors/user-not-found.error';
 @Injectable()
 export class UserWalletRepository {
   constructor(@InjectModel(User.name) private model: Model<UserDocument>) {}
-  
+
   async getWallet(userId: string) {
     const user = await this.model.findById(userId, 'wallet');
 
-    if(!user) {
+    if (!user) {
       throw new UserNotFoundError();
     }
-    
+
     return user.wallet;
   }
 }

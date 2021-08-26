@@ -6,11 +6,11 @@ export const postOkResponse = {
     properties: {
       message: {
         type: 'string',
-        example: 'Depósito realizado com sucesso'
-      }
-    }
-  }
-}
+        example: 'Depósito realizado com sucesso',
+      },
+    },
+  },
+};
 
 export const badRequestResponse = {
   status: 400,
@@ -20,8 +20,8 @@ export const badRequestResponse = {
     properties: {
       message: {
         type: 'string',
-        example: 'CPF de origem não é o mesmo do destino'
-      }
-    }
-  }
-}
+        example: 'CPF de origem não é o mesmo do destino',
+      },
+    },
+  },
+};

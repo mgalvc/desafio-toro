@@ -50,5 +50,5 @@ export const stocks = () => {
       currentPrice: 29.71,
       amount: parseInt((Math.random() * 100).toFixed(0)),
     },
-  ]
+  ];
 };

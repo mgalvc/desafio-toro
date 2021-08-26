@@ -17,7 +17,7 @@ export class UsersRepository {
       const { _id } = await this.model.create({
         ...user,
         account: generateAccount(),
-        wallet: { checkingAccountAmount: 0, positions: [] }
+        wallet: { checkingAccountAmount: 0, positions: [] },
       });
 
       return _id;

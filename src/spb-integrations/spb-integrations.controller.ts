@@ -8,9 +8,7 @@ import { SpbIntegrationsActions } from './spb-integrations.actions';
 @ApiTags('deposits')
 @Controller('spb')
 export class SpbIntegrationsController {
-  constructor(
-    private actions: SpbIntegrationsActions
-  ) {}
+  constructor(private actions: SpbIntegrationsActions) {}
 
   @Post('events')
   @Public()
@@ -18,10 +16,10 @@ export class SpbIntegrationsController {
   @ApiOkResponse(postOkResponse)
   @ApiResponse(badRequestResponse)
   async receiveDeposit(@Body() deposit: DepositDto) {
-    const { 
+    const {
       target: { account },
       origin: { cpf: cpfOrigin },
-      amount
+      amount,
     } = deposit;
 
     return this.actions.receiveDeposit(account, cpfOrigin, amount);

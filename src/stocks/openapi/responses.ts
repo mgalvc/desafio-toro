@@ -11,7 +11,7 @@ export const getOkResponse = {
       currentPrice: {
         description: 'Preço atual da ação',
         type: 'number',
-      }
+      },
     },
   },
 };

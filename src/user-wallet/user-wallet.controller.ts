@@ -7,9 +7,7 @@ import { UserWalletActions } from './user-wallet.actions';
 @ApiTags('user-wallet')
 @Controller('user-wallet')
 export class UserWalletController {
-  constructor(
-    private actions: UserWalletActions
-  ) {}
+  constructor(private actions: UserWalletActions) {}
 
   @Get()
   @ApiSecurity('bearer')

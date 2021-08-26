@@ -10,15 +10,15 @@ import { AuthGuard } from './auth.guard';
 @Module({
   controllers: [AuthController],
   providers: [
-    AuthActions, 
+    AuthActions,
     AuthRepository,
     {
       provide: APP_GUARD,
-      useClass: AuthGuard
-    }
+      useClass: AuthGuard,
+    },
   ],
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
-  ]
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+  ],
 })
 export class AuthModule {}

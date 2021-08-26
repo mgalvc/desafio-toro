@@ -12,5 +12,4 @@ import { User, UserSchema } from 'src/users/schemas/users.schema';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
 })
-
 export class SpbIntegrationsModule {}

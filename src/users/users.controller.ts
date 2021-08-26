@@ -1,22 +1,12 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  Param,
-  Post,
-  Put,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Req } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersActions } from './users.actions';
-import { ApiTags, ApiResponse, ApiSecurity, ApiProduces } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiSecurity } from '@nestjs/swagger';
 import {
   getOkResponse,
   getNotFoundResponse,
   postCreatedResponse,
-  postBadRequestResponse
+  postBadRequestResponse,
 } from './openapi/responses';
 import { Public } from 'src/auth/auth-public.decorator';
 import { Request } from 'express';

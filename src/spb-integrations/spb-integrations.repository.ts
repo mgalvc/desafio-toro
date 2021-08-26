@@ -7,7 +7,7 @@ import AccountNotFoundError from './errors/account-not-found.error';
 @Injectable()
 export class SpbIntegrationsRepository {
   constructor(@InjectModel(User.name) private model: Model<UserDocument>) {}
-  
+
   async getUserCpfFromAccount(account: string) {
     const user = await this.model.findOne({ account }, 'cpf');
 
@@ -19,6 +19,8 @@ export class SpbIntegrationsRepository {
   }
 
   async depositToCheckingAccount(userId: string, amount: number) {
-    await this.model.findByIdAndUpdate(userId, { $inc: { 'wallet.checkingAccountAmount': amount } });
+    await this.model.findByIdAndUpdate(userId, {
+      $inc: { 'wallet.checkingAccountAmount': amount },
+    });
   }
 }

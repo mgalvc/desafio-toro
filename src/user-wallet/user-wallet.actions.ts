@@ -3,15 +3,13 @@ import { UserWalletRepository } from './user-wallet.repository';
 
 @Injectable()
 export class UserWalletActions {
-  constructor(
-    private repository: UserWalletRepository
-  ) {}
+  constructor(private repository: UserWalletRepository) {}
 
   async getWallet(userId: string) {
     const wallet = await this.repository.getWallet(userId);
 
     const positionsAmount = wallet.positions
-      .map(position => position.currentPrice * position.amount)
+      .map((position) => position.currentPrice * position.amount)
       .reduce((sum, curr) => sum + curr, 0);
 
     const consolidated = wallet.checkingAccountAmount + positionsAmount;
@@ -19,7 +17,7 @@ export class UserWalletActions {
     return {
       ...wallet,
       positionsAmount,
-      consolidated
+      consolidated,
     };
   }
 }

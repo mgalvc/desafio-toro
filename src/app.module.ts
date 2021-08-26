@@ -16,15 +16,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: async (configs: ConfigService) => ({
         uri: configs.get('MONGO_URI'),
         useCreateIndex: true,
-        useFindAndModify: false
-      })
+        useFindAndModify: false,
+      }),
     }),
     UsersModule,
     AuthModule,
     StocksModule,
     UserWalletModule,
     SpbIntegrationsModule,
-    JwtGlobalModule
+    JwtGlobalModule,
   ],
   controllers: [],
   providers: [],

@@ -1,6 +1,6 @@
-import { Global, Module } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { JwtModule } from "@nestjs/jwt";
+import { Global, Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Global()
 @Module({
@@ -9,11 +9,10 @@ import { JwtModule } from "@nestjs/jwt";
       inject: [ConfigService],
       useFactory: async (configs: ConfigService) => ({
         secret: configs.get('JWT_SECRET'),
-        signOptions: { expiresIn: configs.get('JWT_TTL') }
-      })
-    })
+        signOptions: { expiresIn: configs.get('JWT_TTL') },
+      }),
+    }),
   ],
-  exports: [JwtModule]
+  exports: [JwtModule],
 })
-
-export class JwtGlobalModule {};
+export class JwtGlobalModule {}

@@ -9,7 +9,9 @@ describe('SpbIntegrationsController', () => {
       controllers: [SpbIntegrationsController],
     }).compile();
 
-    controller = module.get<SpbIntegrationsController>(SpbIntegrationsController);
+    controller = module.get<SpbIntegrationsController>(
+      SpbIntegrationsController,
+    );
   });
 
   it('should be defined', () => {
