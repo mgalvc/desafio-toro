@@ -11,6 +11,6 @@ export class StocksController {
   @Get('trends')
   @ApiResponse(getOkResponse)
   async getMostTraded() {
-    return this.actions.getMostTraded(5);
+    return this.actions.getMostTraded();
   }
 }

@@ -5,7 +5,7 @@ import { StocksRepository } from './stocks.repository';
 export class StocksActions {
   constructor(private repository: StocksRepository) {}
 
-  async getMostTraded(limit: number) {
+  async getMostTraded() {
     return this.repository.getMostTraded(5);
   }
 }
