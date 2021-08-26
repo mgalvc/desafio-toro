@@ -10,16 +10,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersActions } from './users.actions';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiSecurity, ApiProduces } from '@nestjs/swagger';
 import {
   getOkResponse,
   getNotFoundResponse,
   postCreatedResponse,
-  postBadRequestResponse,
-  putOkResponse,
-  putNotFoundResponse,
+  postBadRequestResponse
 } from './openapi/responses';
 import { Public } from 'src/auth/auth-public.decorator';
 import { Request } from 'express';
@@ -32,6 +29,7 @@ export class UsersController {
   @Get()
   @ApiResponse(getOkResponse)
   @ApiResponse(getNotFoundResponse)
+  @ApiSecurity('bearer')
   async get(@Req() req: Request): Promise<any> {
     const { _id } = req.user as any;
     return this.actions.get(_id);

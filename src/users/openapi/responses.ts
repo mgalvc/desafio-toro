@@ -16,6 +16,10 @@ export const getOkResponse = {
         description: 'CPF do usuário',
         type: 'string',
       },
+      account: {
+        description: 'Número de conta do usuário',
+        type: 'string',
+      },
     },
   },
 };
@@ -52,14 +56,4 @@ export const postBadRequestResponse = {
       },
     },
   },
-};
-
-export const putOkResponse = {
-  status: 200,
-  description: 'Usuário atualizado com sucesso',
-};
-
-export const putNotFoundResponse = {
-  status: 404,
-  description: 'Usuário não encontrado',
 };
