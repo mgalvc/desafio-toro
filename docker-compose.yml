@@ -11,3 +11,15 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    container_name: mongo_container
+
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    environment: 
+      MONGO_URI: mongodb://root:root@mongo:27017/toro?authSource=admin
+      JWT_SECRET: secret
+      JWT_TTL: 60s
+      PORT: 3000
+    container_name: app_container
