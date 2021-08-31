@@ -31,6 +31,12 @@ npm run build
 npm run start:prod
 ````
 
+Ou para executar em modo de produção utilizando Docker:
+
+````
+docker-compose up -d
+````
+
 ## Documentação
 
 Este projeto já possui documentação Swagger integrada. Para visualizar, basta executar o projeto e acessar o endpoint `/api` no navegador.
