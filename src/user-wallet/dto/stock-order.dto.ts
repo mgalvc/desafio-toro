@@ -2,12 +2,12 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsPositive, IsString } from 'class-validator';
 
 export class StockOrderDto {
-  @ApiProperty()
+  @ApiProperty({ example: 'PETR4' })
   @IsNotEmpty()
   @IsString()
   symbol: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 10 })
   @IsNotEmpty()
   @IsPositive()
   amount: number;
