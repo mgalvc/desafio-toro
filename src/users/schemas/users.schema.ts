@@ -9,7 +9,6 @@ export class Wallet {
 export class Position {
   symbol: string;
   amount: number;
-  currentPrice: number;
 }
 
 @Schema()
