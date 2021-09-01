@@ -46,3 +46,32 @@ export const getOkResponse = {
     },
   },
 };
+
+export const postCreatedResponse = {
+  status: 201,
+  description: 'Sucesso na execução da ordem',
+  schema: {
+    type: 'object',
+    properties: {
+      message: {
+        description: 'Ordem executada com sucesso',
+        type: 'string',
+      },
+    },
+  },
+};
+
+export const postBadRequestResponse = {
+  status: 400,
+  description: 'Erro na execução da ordem',
+  schema: {
+    type: 'object',
+    properties: {
+      message: {
+        description: 'Descrição do erro',
+        type: 'string',
+        example: 'Saldo insuficiente',
+      },
+    },
+  },
+};
