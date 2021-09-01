@@ -1,18 +1,39 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthRepository } from '../auth.repository';
+import UserNotFoundError from '../errors/user-not-found.error';
 
 describe('AuthRepository', () => {
-  let provider: AuthRepository;
+  let repository: AuthRepository;
+  
+  let userModel = {
+    findOne: () => {}
+  } as any;
+
+  const userMock = {
+    toJSON: () => ({
+      cpf: '1234567890',
+      name: 'matheus'
+    })
+  };
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthRepository],
-    }).compile();
-
-    provider = module.get<AuthRepository>(AuthRepository);
+    repository = new AuthRepository(userModel);
   });
 
-  it('should be defined', () => {
-    expect(provider).toBeDefined();
+  it('should return JSON user data', async () => {
+    jest.spyOn(userModel, 'findOne').mockResolvedValueOnce(userMock);
+
+    const res = await repository.findByCpfAndPassword('1234567890', '123');
+
+    expect(res).toEqual({
+      cpf: '1234567890',
+      name: 'matheus'
+    });
   });
+
+  it('should return a user not found error', () => {
+    jest.spyOn(userModel, 'findOne').mockResolvedValueOnce(undefined);
+    const res = repository.findByCpfAndPassword('', '');
+    expect(res).rejects.toBeInstanceOf(UserNotFoundError);
+  })
 });
