@@ -3,11 +3,11 @@ import { AuthActions } from '../auth.actions';
 describe('AuthActions', () => {
   let actions: AuthActions;
 
-  let authRepository = {
+  const authRepository = {
     findByCpfAndPassword: jest.fn(),
   } as any;
 
-  let jwtService = {
+  const jwtService = {
     sign: jest.fn(),
   } as any;
 

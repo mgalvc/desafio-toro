@@ -1,12 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { AuthRepository } from '../auth.repository';
 import UserNotFoundError from '../errors/user-not-found.error';
 
 describe('AuthRepository', () => {
   let repository: AuthRepository;
 
-  let userModel = {
-    findOne: () => {},
+  const userModel = {
+    findOne: () => jest.fn(),
   } as any;
 
   const userMock = {
