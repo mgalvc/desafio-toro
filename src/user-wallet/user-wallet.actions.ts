@@ -7,15 +7,16 @@ export class UserWalletActions {
   constructor(private repository: UserWalletRepository) {}
 
   async getWallet(userId: string) {
-    const { checkingAccountAmount, positions } = await this.repository.getWallet(userId);
+    const { checkingAccountAmount, positions } =
+      await this.repository.getWallet(userId);
 
     const positionsBySymbol = {};
 
     for (const { symbol, amount } of positions) {
-      if(!positionsBySymbol[symbol]) {
-        positionsBySymbol[symbol] = 0
+      if (!positionsBySymbol[symbol]) {
+        positionsBySymbol[symbol] = 0;
       }
-      
+
       positionsBySymbol[symbol] += amount;
     }
 
@@ -26,12 +27,12 @@ export class UserWalletActions {
       positionsWithCurrentPrice.push({
         symbol,
         amount: positionsBySymbol[symbol],
-        currentPrice
+        currentPrice,
       });
     }
 
     const positionsAmount = positionsWithCurrentPrice
-      .map(position => position.currentPrice * position.amount)
+      .map((position) => position.currentPrice * position.amount)
       .reduce((sum, curr) => sum + curr, 0);
 
     const consolidated = checkingAccountAmount + positionsAmount;
@@ -47,7 +48,7 @@ export class UserWalletActions {
   async buyStock(userId: string, symbol: string, amount: number) {
     const wallet = await this.repository.getWallet(userId);
     const stockPrice = await this.repository.getStockCurrentPrice(symbol);
-    
+
     const orderPrice = stockPrice * amount;
 
     if (orderPrice > wallet.checkingAccountAmount) {

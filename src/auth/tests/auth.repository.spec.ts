@@ -4,16 +4,16 @@ import UserNotFoundError from '../errors/user-not-found.error';
 
 describe('AuthRepository', () => {
   let repository: AuthRepository;
-  
+
   let userModel = {
-    findOne: () => {}
+    findOne: () => {},
   } as any;
 
   const userMock = {
     toJSON: () => ({
       cpf: '1234567890',
-      name: 'matheus'
-    })
+      name: 'matheus',
+    }),
   };
 
   beforeEach(async () => {
@@ -27,7 +27,7 @@ describe('AuthRepository', () => {
 
     expect(res).toEqual({
       cpf: '1234567890',
-      name: 'matheus'
+      name: 'matheus',
     });
   });
 
@@ -35,5 +35,5 @@ describe('AuthRepository', () => {
     jest.spyOn(userModel, 'findOne').mockResolvedValueOnce(undefined);
     const res = repository.findByCpfAndPassword('', '');
     expect(res).rejects.toBeInstanceOf(UserNotFoundError);
-  })
+  });
 });

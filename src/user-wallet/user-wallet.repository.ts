@@ -21,19 +21,27 @@ export class UserWalletRepository {
   }
 
   async getStockCurrentPrice(symbol: string) {
-    const found = stocks().find(stock => stock.symbol === symbol);
+    const found = stocks().find((stock) => stock.symbol === symbol);
 
-    if(!found) {
+    if (!found) {
       throw new StockNotFoundError();
     }
 
     return found.currentPrice;
   }
 
-  async buyStock(userId: string, symbol: string, amount: number, orderPrice: number) {
-    await this.model.updateOne({ _id: userId }, {
-      $push: { 'wallet.positions': { symbol, amount } },
-      $inc: { 'wallet.checkingAccountAmount': -orderPrice },
-    });
+  async buyStock(
+    userId: string,
+    symbol: string,
+    amount: number,
+    orderPrice: number,
+  ) {
+    await this.model.updateOne(
+      { _id: userId },
+      {
+        $push: { 'wallet.positions': { symbol, amount } },
+        $inc: { 'wallet.checkingAccountAmount': -orderPrice },
+      },
+    );
   }
 }

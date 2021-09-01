@@ -2,31 +2,33 @@ import { AuthActions } from '../auth.actions';
 
 describe('AuthActions', () => {
   let actions: AuthActions;
-  
+
   let authRepository = {
-    findByCpfAndPassword: jest.fn()
+    findByCpfAndPassword: jest.fn(),
   } as any;
-  
+
   let jwtService = {
-    sign: jest.fn()
+    sign: jest.fn(),
   } as any;
 
   beforeEach(async () => {
-    actions = new AuthActions(authRepository, jwtService)
+    actions = new AuthActions(authRepository, jwtService);
   });
 
   it('should login returning user name and access token', async () => {
-    jest.spyOn(authRepository, 'findByCpfAndPassword').mockResolvedValueOnce({ name: 'matheus' } as any);
+    jest
+      .spyOn(authRepository, 'findByCpfAndPassword')
+      .mockResolvedValueOnce({ name: 'matheus' } as any);
     jest.spyOn(jwtService, 'sign').mockReturnValueOnce('abc123');
-    
+
     const res = await actions.login({
       cpf: '1234567890',
-      password: '123456'
+      password: '123456',
     });
 
     expect(res).toEqual({
       name: 'matheus',
-      access_token: 'abc123'
+      access_token: 'abc123',
     });
   });
 });
